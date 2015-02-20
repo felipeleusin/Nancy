@@ -325,7 +325,8 @@ namespace Nancy.Tests.Unit.Security
         private static ClaimsPrincipal GetFakeUser(string userName, IEnumerable<Claim> claims = null)
         {
             var ret = new ClaimsPrincipal();
-            ret.AddIdentity(new ClaimsIdentity(claims, "Test", userName, null));
+            //TODO: probably should add userName as a Name claim
+            ret.AddIdentity(new ClaimsIdentity(claims, "Test"));
 
             return ret;
         }

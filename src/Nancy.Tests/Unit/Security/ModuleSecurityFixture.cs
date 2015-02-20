@@ -3,6 +3,7 @@ namespace Nancy.Tests.Unit.Security
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading;
 
@@ -532,7 +533,8 @@ namespace Nancy.Tests.Unit.Security
         private static ClaimsPrincipal GetFakeUser(string userName, IEnumerable<Claim> claims = null)
         {
             var ret = new ClaimsPrincipal();
-            ret.AddIdentity(new ClaimsIdentity(claims, "Test", userName, null));
+            //TODO: How to handle the userName?
+            ret.AddIdentity(new ClaimsIdentity(claims, "Test"));
 
             return ret;
         }
