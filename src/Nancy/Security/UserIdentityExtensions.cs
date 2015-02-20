@@ -6,9 +6,9 @@
     using System.Security.Claims;
 
     /// <summary>
-    /// Extension methods for working with IUserIdentity.
+    /// Extension methods for working with ClaimsPrincipal.
     /// </summary>
-    public static class UserIdentityExtensions
+    public static class ClaimsPrincipalExtensions
     {
         /// <summary>
         /// Tests if the user is authenticated.
@@ -19,7 +19,7 @@
         {
             return
                 user != null
-                && user.IsAuthenticated();
+                && user.Identities.All(x => x.IsAuthenticated);
         }
 
         /// <summary>
@@ -32,7 +32,6 @@
         {
             return
                 user != null
-                && user.Claims != null
                 && user.Claims.Contains(requiredClaim);
         }
 
@@ -47,7 +46,7 @@
             return
                 user != null
                 && user.Claims != null
-                && !requiredClaims.Any(claim => user.Claims.Contains(claim));
+                && requiredClaims.All(claim => user.Claims.Contains(claim));
         }
 
         /// <summary>
